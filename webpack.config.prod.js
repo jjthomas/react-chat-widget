@@ -29,7 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts(x?)$/,
-        exclude: [/node_modules/, /dev/],
+        // exclude: [/node_modules/, /dev/],
         use: ['babel-loader', 'ts-loader']
       },
       {
