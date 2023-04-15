@@ -29,7 +29,7 @@ const messagesReducer = {
     const idx = state.messages.findIndex(msg => msg.customId === id);
     if (idx !== -1 && "text" in state.messages[idx]) {
       (state.messages[idx] as MessageTypes).text = text;
-      return { ...state };
+      return { ...state, messages: [...state.messages] };
     }
 
     return { 

@@ -9,6 +9,9 @@ export default class App extends Component {
     addLinkSnippet({ link: 'https://google.com', title: 'Google' });
     addResponseMessage('![](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)');
     addResponseMessage('![vertical](https://d2sofvawe08yqg.cloudfront.net/reintroducing-react/hero2x?1556470143)');
+    addResponseMessage("test", "ramsey");
+    setTimeout(() => addResponseMessage("test\ntest", "ramsey"), 5000)
+    setTimeout(() => addResponseMessage("test\ntest\ntest", "ramsey"), 10000)
   }
 
   handleNewUserMessage = (newMessage: any) => {
