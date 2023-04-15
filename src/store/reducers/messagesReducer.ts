@@ -1,4 +1,4 @@
-import { MessagesState } from '../types';
+import { MessagesState, Link, MessageTypes } from '../types';
 
 import { createReducer } from '../../utils/createReducer';
 import { createNewMessage, createLinkSnippet, createComponentMessage } from '../../utils/messages';
@@ -25,8 +25,20 @@ const messagesReducer = {
   [ADD_NEW_USER_MESSAGE]: (state: MessagesState, { text, showClientAvatar, id }) =>
     ({ ...state, messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.CLIENT, id)]}),
 
-  [ADD_NEW_RESPONSE_MESSAGE]: (state: MessagesState, { text, id }) =>
-    ({ ...state, messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.RESPONSE, id)], badgeCount: state.badgeCount + 1 }),
+  [ADD_NEW_RESPONSE_MESSAGE]: (state: MessagesState, { text, id }) => {
+    const idx = state.messages.findIndex(msg => msg.customId === id);
+    if (idx !== -1 && "text" in state.messages[idx]) {
+      (state.messages[idx] as MessageTypes).text = text;
+      return { ...state };
+    }
+
+    return { 
+      ...state, 
+      messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.RESPONSE, id)], 
+      badgeCount: state.badgeCount + 1 
+    }
+  },
+    
 
   [ADD_NEW_LINK_SNIPPET]: (state: MessagesState, { link, id }) =>
     ({ ...state, messages: [...state.messages, createLinkSnippet(link, id)] }),
