@@ -7,12 +7,21 @@ import store from  './store';
 import { AnyFunction } from './utils/types';
 
 export interface Theme {
-  accentColor?: string;
-  titleTextColor?: string;
-  titleFontFamily?: string;
-  // userMessageBubbleColor?: string;
-  // chatMessageBubbleColor?: string;
-  // messageFontFamily?: string;
+  headerColor?: string;
+  headerFontFamily?: string;
+  headerBackgroundColor?: string;
+  launcherBackgroundColor?: string;
+  conversationBackgroundColor?: string;
+  composerBackgroundColor?: string;
+  inputColor?: string;
+  inputFontFamily?: string;
+  inputBackgroundColor?: string;
+  sendButtonColor?: string;
+  clientMessageColor?: string;
+  clientMessageBubbleColor?: string;
+  responseMessageColor?: string;
+  responseMessageBubbleColor?: string;
+  messageFontFamily?: string;
 }
 
 type Props = {

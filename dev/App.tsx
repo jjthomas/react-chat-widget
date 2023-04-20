@@ -52,9 +52,20 @@ export default class App extends Component {
         handleSubmit={this.handleSubmit}
         emojis={false}
         theme={{
-          accentColor: "#00ff00",
-          titleTextColor: "#000",
-          titleFontFamily: "Tahoma, sans-serif"
+          headerColor: "#000",
+          headerFontFamily: "Tahoma, sans-serif",
+          headerBackgroundColor: "#00ff00",
+          launcherBackgroundColor: "#f000f0",
+          conversationBackgroundColor: "#DDD",
+          composerBackgroundColor: "#AAA",
+          inputColor: "#00FF00",
+          inputFontFamily: "Courier New, monospace",
+          inputBackgroundColor: "#f0f000",
+          sendButtonColor: "#008f00",
+          clientMessageBubbleColor: "#ff0000",
+          responseMessageColor: "#fff",
+          responseMessageBubbleColor: "#0000ff",
+          messageFontFamily:"Tahoma, sans-serif"
         }}
       />
     );

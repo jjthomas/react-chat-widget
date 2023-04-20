@@ -9,12 +9,17 @@ import { MessageTypes } from 'src/store/types';
 
 import './styles.scss';
 
+export interface MessageTheme {
+  color?: string;
+  backgroundColor?: string;
+}
 type Props = {
   message: MessageTypes;
   showTimeStamp: boolean;
+  theme?: MessageTheme;
 }
 
-function Message({ message, showTimeStamp }: Props) {
+function Message({ message, showTimeStamp, theme }: Props) {
   const sanitizedHTML = markdownIt({ break: true })
     .use(markdownItClass, {
       img: ['rcw-message-img']
@@ -26,7 +31,11 @@ function Message({ message, showTimeStamp }: Props) {
 
   return (
     <div className={`rcw-${message.sender}`}>
-      <div className="rcw-message-text" dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
+      <div 
+        className="rcw-message-text" 
+        dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} 
+        style={{backgroundColor: theme?.backgroundColor, color: theme?.color}}
+      />
       {showTimeStamp && <span className="rcw-timestamp">{format(message.timestamp, 'hh:mm')}</span>}
     </div>
   );

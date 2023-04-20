@@ -1,17 +1,27 @@
-import { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import { useRef, useEffect, useState, forwardRef, useImperativeHandle, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import cn from 'classnames';
 
 import { GlobalState } from 'src/store/types';
 
 import { getCaretIndex, isFirefox, updateCaret, insertNodeAtCaret, getSelection } from '../../../../../../utils/contentEditable'
-const send = require('../../../../../../../assets/send_button.svg') as string;
+// const sendSvg = require('../../../../../../../assets/send_button.svg') as string;
 const emoji = require('../../../../../../../assets/icon-smiley.svg') as string;
 const brRegex = /<br>/g;
 
 import './style.scss';
+import SendIcon from './SendIcon';
+
+interface Theme {
+  backgroundColor?: string;
+  inputColor?: string;
+  inputFontFamily?: string;
+  inputBackgroundColor?: string;
+  sendButtonColor?: string;
+}
 
 type Props = {
+  emojis?: boolean;
   placeholder: string;
   disabledInput: boolean;
   autofocus: boolean;
@@ -20,9 +30,10 @@ type Props = {
   onPressEmoji: () => void;
   onChangeSize: (event: any) => void;
   onTextInputChange?: (event: any) => void;
+  theme?: Theme;
 }
 
-function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, onPressEmoji, onChangeSize }: Props, ref) {
+function Sender({ emojis, sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, onPressEmoji, onChangeSize, theme }: Props, ref) {
   const showChat = useSelector((state: GlobalState) => state.behavior.showChat);
   const inputRef = useRef<HTMLDivElement>(null!);
   const refContainer = useRef<HTMLDivElement>(null);
@@ -125,17 +136,22 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
   }
 
   return (
-    <div ref={refContainer} className="rcw-sender">
-      <button className='rcw-picker-btn' type="submit" onClick={handlerPressEmoji}>
-        <img src={emoji} className="rcw-picker-icon" alt="" />
-      </button>
-      <div className={cn('rcw-new-message', {
+    <div ref={refContainer} className="rcw-sender" style={{backgroundColor: theme?.backgroundColor}}>
+      {emojis && (
+        <button className='rcw-picker-btn' type="submit" onClick={handlerPressEmoji}>
+          <img src={emoji} className="rcw-picker-icon" alt="" />
+        </button>
+      )}
+      <div 
+        className={cn('rcw-new-message', {
           'rcw-message-disable': disabledInput,
-        })
-      }>
+        })}
+        style={{backgroundColor: disabledInput ? undefined : theme?.inputBackgroundColor}}
+      >
         <div
           spellCheck
           className="rcw-input"
+          style={{backgroundColor: theme?.inputBackgroundColor, color: theme?.inputColor, fontFamily: theme?.inputFontFamily}}
           role="textbox"
           contentEditable={!disabledInput} 
           ref={inputRef}
@@ -147,8 +163,9 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
         />
         
       </div>
-      <button type="submit" className="rcw-send" onClick={handlerSendMessage}>
-        <img src={send} className="rcw-send-icon" alt={buttonAlt} />
+      <button type="submit" className="rcw-send" onClick={handlerSendMessage} style={{backgroundColor: theme?.backgroundColor}}>
+        <SendIcon className="rcw-send-icon" buttonAlt={buttonAlt}  fill={theme?.sendButtonColor} />
+        {/* <img src={send} className="rcw-send-icon" alt={buttonAlt} /> */}
       </button>
     </div>
   );

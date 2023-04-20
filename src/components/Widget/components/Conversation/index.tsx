@@ -117,15 +117,18 @@ function Conversation({
         showCloseButton={showCloseButton}
         titleAvatar={titleAvatar}
         theme={{
-          color: theme?.titleTextColor,
-          backgroundColor: theme?.accentColor,
-          fontFamily: theme?.titleFontFamily
+          color: theme?.headerColor,
+          backgroundColor: theme?.headerBackgroundColor,
+          fontFamily: theme?.headerFontFamily
         }}
       />
       <Messages
         profileAvatar={profileAvatar}
         profileClientAvatar={profileClientAvatar}
         showTimeStamp={showTimeStamp}
+        theme={{
+          ...theme
+        }}
       />
       <QuickButtons onQuickButtonClicked={onQuickButtonClicked} />
       {/* {emojis && pickerStatus && (<Picker 
@@ -133,6 +136,7 @@ function Conversation({
         onSelect={onSelectEmoji}
       />)} */}
       <Sender
+        emojis={emojis}
         ref={senderRef}
         sendMessage={handlerSendMsn}
         placeholder={senderPlaceHolder}
@@ -142,6 +146,13 @@ function Conversation({
         buttonAlt={sendButtonAlt}
         onPressEmoji={togglePicker}
         onChangeSize={setOffset}
+        theme={{
+          backgroundColor: theme?.composerBackgroundColor,
+          inputColor: theme?.inputColor,
+          inputFontFamily: theme?.inputFontFamily,
+          inputBackgroundColor: theme?.inputBackgroundColor,
+          sendButtonColor: theme?.sendButtonColor,
+        }}
       />
     </div>
   );

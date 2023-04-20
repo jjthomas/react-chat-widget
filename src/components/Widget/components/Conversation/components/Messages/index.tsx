@@ -10,13 +10,23 @@ import { MESSAGE_SENDER } from '../../../../../../constants';
 import Loader from './components/Loader';
 import './styles.scss';
 
+interface Theme {
+  conversationBackgroundColor?: string;
+  clientMessageColor?: string;
+  clientMessageBubbleColor?: string;
+  responseMessageColor?: string;
+  responseMessageBubbleColor?: string;
+  messageFontFamily?: string;
+}
+
 type Props = {
   showTimeStamp: boolean,
   profileAvatar?: string;
   profileClientAvatar?: string;
+  theme?: Theme;
 }
 
-function Messages({ profileAvatar, profileClientAvatar, showTimeStamp }: Props) {
+function Messages({ profileAvatar, profileClientAvatar, showTimeStamp, theme }: Props) {
   const dispatch = useDispatch();
   const { messages, typing, showChat, badgeCount } = useSelector((state: GlobalState) => ({
     messages: state.messages.messages,
@@ -34,11 +44,15 @@ function Messages({ profileAvatar, profileClientAvatar, showTimeStamp }: Props) 
   }, [messages, badgeCount, showChat]);
     
   const getComponentToRender = (message: MessageTypes | Link | CustomCompMessage) => {
+    const messageTheme = {
+      color: isClient(message.sender) ? theme?.clientMessageColor : theme?.responseMessageColor,
+      backgroundColor: isClient(message.sender) ? theme?.clientMessageBubbleColor : theme?.responseMessageBubbleColor
+    };
     const ComponentToRender = message.component;
     if (message.type === 'component') {
-      return <ComponentToRender {...message.props} />;
+      return <ComponentToRender {...message.props} theme={messageTheme} />;
     }
-    return <ComponentToRender message={message} showTimeStamp={showTimeStamp} />;
+    return <ComponentToRender message={message} showTimeStamp={showTimeStamp} theme={messageTheme} />;
   };
 
   // TODO: Fix this function or change to move the avatar to last message from response
@@ -52,10 +66,12 @@ function Messages({ profileAvatar, profileClientAvatar, showTimeStamp }: Props) 
   const isClient = (sender) => sender === MESSAGE_SENDER.CLIENT;
 
   return (
-    <div id="messages" className="rcw-messages-container" ref={messageRef}>
+    <div id="messages" className="rcw-messages-container" ref={messageRef} style={{fontFamily: theme?.messageFontFamily, backgroundColor: theme?.conversationBackgroundColor}}>
       {messages?.map((message, index) =>
-        <div className={`rcw-message ${isClient(message.sender) ? 'rcw-message-client' : ''}`} 
-          key={`${index}-${format(message.timestamp, 'hh:mm')}`}>
+        <div 
+          className={`rcw-message ${isClient(message.sender) ? 'rcw-message-client' : ''}`} 
+          key={`${index}-${format(message.timestamp, 'hh:mm')}`}
+        >
           {((profileAvatar && !isClient(message.sender)) || (profileClientAvatar && isClient(message.sender))) &&
             message.showAvatar && 
             <img 

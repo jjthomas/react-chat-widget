@@ -11,6 +11,7 @@
   overflow: hidden;
   padding: 10px;
   position: relative;
+  align-items: center;
 
   &.expand {
     height: 55px;
@@ -61,6 +62,7 @@
 
   .rcw-send-icon {
     height: 25px;
+    width: min-content;
   }
 }
 
