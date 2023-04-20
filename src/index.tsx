@@ -7,7 +7,7 @@ import store from  './store';
 import { AnyFunction } from './utils/types';
 
 type Props = {
-  handleNewUserMessage: AnyFunction;
+  sessionId?: string;
   handleQuickButtonClicked?: AnyFunction;
   title?: string;
   titleAvatar?: string;
@@ -47,7 +47,7 @@ function ConnectedWidget({
   profileAvatar,
   profileClientAvatar,
   launcher,
-  handleNewUserMessage,
+  sessionId,
   handleQuickButtonClicked,
   handleTextInputChange,
   chatId,
@@ -71,7 +71,6 @@ function ConnectedWidget({
         title={title}
         titleAvatar={titleAvatar}
         subtitle={subtitle}
-        handleNewUserMessage={handleNewUserMessage}
         handleQuickButtonClicked={handleQuickButtonClicked}
         senderPlaceHolder={senderPlaceHolder}
         profileAvatar={profileAvatar}
@@ -95,6 +94,7 @@ function ConnectedWidget({
         showBadge={showBadge}
         resizable={resizable}
         emojis={emojis}
+        sessionId={sessionId}
       />
     </Provider>
   );
