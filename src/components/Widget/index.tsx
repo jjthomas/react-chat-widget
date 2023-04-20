@@ -30,11 +30,12 @@ const getTLD = (host) => {
   return tld;
 };
 
-export const sendChatMessage = (chatId, message) => {
+export const sendChatMessage = (chatId, message, sessionId) => {
   socket.emit("chat-message", {
     chatId,
     message,
-    domain: getTLD(window.location.host)
+    domain: getTLD(window.location.host),
+    sessionId
   });
 };
 
@@ -74,8 +75,8 @@ export const useChatStream = (onNewChatMessage) => {
 
   return {
     chatHistory,
-    sendChatMessage: (message) =>
-      sendChatMessage(chatHistory.chatId, message),
+    sendChatMessage: (message, sessionId) =>
+      sendChatMessage(chatHistory.chatId, message, sessionId),
   };
 };
 
@@ -100,7 +101,7 @@ type Props = {
   fullScreenMode: boolean;
   autofocus: boolean;
   customLauncher?: AnyFunction;
-  handleNewUserMessage: AnyFunction;
+  sessionId: string;
   handleQuickButtonClicked?: AnyFunction;
   handleTextInputChange?: (event: any) => void;
   chatId: string;
@@ -130,7 +131,7 @@ function Widget({
   fullScreenMode,
   autofocus,
   customLauncher,
-  handleNewUserMessage,
+  sessionId,
   handleQuickButtonClicked,
   handleTextInputChange,
   chatId,
@@ -162,7 +163,7 @@ function Widget({
 
     handleSubmit?.(userInput);
     dispatch(addUserMessage(userInput));
-    sendMsg(userInput);
+    sendMsg(userInput, sessionId);
   }
 
   const onQuickButtonClicked = (event, value) => {
