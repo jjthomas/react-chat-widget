@@ -12,6 +12,7 @@ import './styles.scss';
 export interface MessageTheme {
   color?: string;
   backgroundColor?: string;
+  timestampColor?: string;
 }
 type Props = {
   message: MessageTypes;
@@ -36,7 +37,7 @@ function Message({ message, showTimeStamp, theme }: Props) {
         dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} 
         style={{backgroundColor: theme?.backgroundColor, color: theme?.color}}
       />
-      {showTimeStamp && <span className="rcw-timestamp">{format(message.timestamp, 'hh:mm')}</span>}
+      {showTimeStamp && <span className="rcw-timestamp" style={{color: theme?.timestampColor}}>{format(message.timestamp, 'hh:mm')}</span>}
     </div>
   );
 }

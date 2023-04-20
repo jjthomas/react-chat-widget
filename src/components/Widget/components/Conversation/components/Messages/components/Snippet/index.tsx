@@ -25,7 +25,7 @@ function Snippet({ message, showTimeStamp, theme }: Props) {
           </a>
         </div>
       </div>
-      {showTimeStamp && <span className="rcw-timestamp">{format(message.timestamp, 'hh:mm')}</span>}
+      {showTimeStamp && <span className="rcw-timestamp" style={{color: theme?.timestampColor}}>{format(message.timestamp, 'hh:mm')}</span>}
     </div>
   );
 }

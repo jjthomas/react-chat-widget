@@ -17,6 +17,7 @@ interface Theme {
   responseMessageColor?: string;
   responseMessageBubbleColor?: string;
   messageFontFamily?: string;
+  timestampColor?: string;
 }
 
 type Props = {
@@ -46,7 +47,8 @@ function Messages({ profileAvatar, profileClientAvatar, showTimeStamp, theme }: 
   const getComponentToRender = (message: MessageTypes | Link | CustomCompMessage) => {
     const messageTheme = {
       color: isClient(message.sender) ? theme?.clientMessageColor : theme?.responseMessageColor,
-      backgroundColor: isClient(message.sender) ? theme?.clientMessageBubbleColor : theme?.responseMessageBubbleColor
+      backgroundColor: isClient(message.sender) ? theme?.clientMessageBubbleColor : theme?.responseMessageBubbleColor,
+      timestampColor: theme?.timestampColor
     };
     const ComponentToRender = message.component;
     if (message.type === 'component') {

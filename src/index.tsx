@@ -22,6 +22,7 @@ export interface Theme {
   responseMessageColor?: string;
   responseMessageBubbleColor?: string;
   messageFontFamily?: string;
+  timestampColor?: string;
 }
 
 type Props = {
