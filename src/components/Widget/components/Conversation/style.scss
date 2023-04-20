@@ -25,6 +25,12 @@
   }
 }
 
+@media screen and (max-width: 370px) {
+  .rcw-conversation-container {
+    min-width: none;
+  }
+}
+
 .rcw-conversation-resizer {
   cursor: col-resize;
   height: 100%;
