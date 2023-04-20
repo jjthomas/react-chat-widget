@@ -13,6 +13,9 @@
   margin-top: 10px;
   cursor: pointer;
   width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:focus {
     outline: none;
