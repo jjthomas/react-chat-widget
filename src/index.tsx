@@ -26,6 +26,7 @@ export interface Theme {
 }
 
 type Props = {
+  initialMessage?:string;
   sessionId?: string;
   handleQuickButtonClicked?: AnyFunction;
   title?: string;
@@ -57,6 +58,7 @@ type Props = {
 } & typeof defaultProps;
 
 function ConnectedWidget({
+  initialMessage,
   title,
   titleAvatar,
   subtitle,
@@ -89,6 +91,7 @@ function ConnectedWidget({
   return (
     <Provider store={store}>
       <Widget
+        initialMessage={initialMessage}
         title={title}
         titleAvatar={titleAvatar}
         subtitle={subtitle}

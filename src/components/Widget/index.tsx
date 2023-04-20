@@ -5,11 +5,12 @@ import { isWidgetOpened } from '../../store/dispatcher';
 import { AnyFunction } from '../../utils/types';
 
 import WidgetLayout from './layout';
-import CSSReset from '../CSSReset';
 import { useChatStream } from './ChatAPI';
 import { Theme } from 'src';
+import { useEffect } from 'react';
 
 type Props = {
+  initialMessage?: string;
   title: string;
   titleAvatar?: string;
   subtitle: string;
@@ -41,6 +42,7 @@ type Props = {
 }
 
 function Widget({
+  initialMessage,
   title,
   titleAvatar,
   subtitle,
@@ -72,6 +74,12 @@ function Widget({
 }: Props) {
   const dispatch = useDispatch();
   const {sendChatMessage: sendHumanChatMessage} = useChatStream();
+  
+  useEffect(() => {
+    if (initialMessage) {
+      dispatch(addResponseMessage(initialMessage, "initial"));
+    }
+  }, [initialMessage, addResponseMessage]);
 
   const toggleConversation = () => {
     dispatch(toggleChat());
@@ -94,7 +102,6 @@ function Widget({
   }
 
   return (
-    // <CSSReset>
       <WidgetLayout
         onToggleConversation={toggleConversation}
         onSendMessage={handleMessageSubmit}
@@ -124,7 +131,6 @@ function Widget({
         emojis={emojis}
         theme={theme}
       />
-    // </CSSReset>
   );
 }
 

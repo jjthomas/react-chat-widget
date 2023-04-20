@@ -43,6 +43,7 @@ export default class App extends Component {
   render() {
     return (
       <Widget
+        initialMessage={"Hello!\n\nHow can I help you?"}
         title="Bienvenido"
         subtitle="Asistente virtual"
         titleAvatar="https://upload.wikimedia.org/wikipedia/commons/2/24/LEGO_logo.svg"
@@ -66,7 +67,8 @@ export default class App extends Component {
           clientMessageBubbleColor: "#ff0000",
           responseMessageColor: "#fff",
           responseMessageBubbleColor: "#0000ff",
-          messageFontFamily:"Tahoma, sans-serif"
+          messageFontFamily:"Tahoma, sans-serif",
+          timestampColor: "#ff0000"
         }}
       />
     );

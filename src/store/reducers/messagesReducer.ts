@@ -26,7 +26,7 @@ const messagesReducer = {
     ({ ...state, messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.CLIENT, id)]}),
 
   [ADD_NEW_RESPONSE_MESSAGE]: (state: MessagesState, { text, id }) => {
-    const idx = state.messages.findIndex(msg => msg.customId === id);
+    const idx = id ? state.messages.findIndex(msg => msg.customId === id) : -1;
     if (idx !== -1 && "text" in state.messages[idx]) {
       (state.messages[idx] as MessageTypes).text = text;
       return { ...state, messages: [...state.messages] };
