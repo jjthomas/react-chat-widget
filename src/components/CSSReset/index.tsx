@@ -6,8 +6,8 @@ interface CSSResetProps {
 
 export default function CSSReset({ children }: CSSResetProps) {
     return (
-        <>
+        <div className="yui3-cssreset">
             {children}
-        </>
+        </div>
     );
 }

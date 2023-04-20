@@ -6,7 +6,7 @@ import { AnyFunction } from '../../utils/types';
 
 import WidgetLayout from './layout';
 import CSSReset from '../CSSReset';
-import { useChatStream } from './chatAPI';
+import { useChatStream } from './ChatAPI';
 
 type Props = {
   title: string;
@@ -91,7 +91,7 @@ function Widget({
   }
 
   return (
-    <CSSReset>
+    // <CSSReset>
       <WidgetLayout
         onToggleConversation={toggleConversation}
         onSendMessage={handleMessageSubmit}
@@ -120,7 +120,7 @@ function Widget({
         resizable={resizable}
         emojis={emojis}
       />
-    </CSSReset>
+    // </CSSReset>
   );
 }
 

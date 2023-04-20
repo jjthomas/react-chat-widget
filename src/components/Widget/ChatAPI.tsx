@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { io } from "socket.io-client";
-import { addResponseMessage } from "src/store/dispatcher";
+import { addResponseMessage } from "../../store/dispatcher";
 
 const API_ENDPOINT = "https://api.questacloud.com:446";
 const socket = io(API_ENDPOINT);
