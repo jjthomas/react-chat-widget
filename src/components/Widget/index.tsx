@@ -7,6 +7,7 @@ import { AnyFunction } from '../../utils/types';
 import WidgetLayout from './layout';
 import CSSReset from '../CSSReset';
 import { useChatStream } from './ChatAPI';
+import { Theme } from 'src';
 
 type Props = {
   title: string;
@@ -36,6 +37,7 @@ type Props = {
   showBadge?: boolean;
   resizable?: boolean;
   emojis?: boolean;
+  theme?: Theme;
 }
 
 function Widget({
@@ -65,7 +67,8 @@ function Widget({
   handleSubmit,
   showBadge,
   resizable,
-  emojis
+  emojis, 
+  theme
 }: Props) {
   const dispatch = useDispatch();
   const {sendChatMessage: sendHumanChatMessage} = useChatStream();
@@ -119,6 +122,7 @@ function Widget({
         showBadge={showBadge}
         resizable={resizable}
         emojis={emojis}
+        theme={theme}
       />
     // </CSSReset>
   );

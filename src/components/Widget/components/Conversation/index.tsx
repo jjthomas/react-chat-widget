@@ -10,6 +10,7 @@ import QuickButtons from './components/QuickButtons';
 import { AnyFunction } from '../../../../utils/types';
 
 import './style.scss';
+import { Theme } from 'src';
 
 interface ISenderRef {
   onSelectEmoji: (event: any) => void;
@@ -34,6 +35,7 @@ type Props = {
   showTimeStamp: boolean;
   resizable?: boolean;
   emojis?: boolean;
+  theme?: Theme;
 };
 
 function Conversation({
@@ -54,7 +56,8 @@ function Conversation({
   sendButtonAlt,
   showTimeStamp,
   resizable,
-  emojis
+  emojis,
+  theme
 }: Props) {
   const [containerDiv, setContainerDiv] = useState<HTMLElement | null>();
   let startX, startWidth;
@@ -113,6 +116,11 @@ function Conversation({
         toggleChat={toggleChat}
         showCloseButton={showCloseButton}
         titleAvatar={titleAvatar}
+        theme={{
+          color: theme?.titleTextColor,
+          backgroundColor: theme?.accentColor,
+          fontFamily: theme?.titleFontFamily
+        }}
       />
       <Messages
         profileAvatar={profileAvatar}

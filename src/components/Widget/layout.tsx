@@ -11,6 +11,7 @@ import Launcher from './components/Launcher';
 import FullScreenPreview from './components/FullScreenPreview';
 
 import './style.scss';
+import { Theme } from 'src';
 
 type Props = {
   title: string;
@@ -38,7 +39,8 @@ type Props = {
   zoomStep?: number;
   showBadge?: boolean;
   resizable?: boolean;
-  emojis?: boolean
+  emojis?: boolean;
+  theme?: Theme;
 }
 
 function WidgetLayout({
@@ -67,7 +69,8 @@ function WidgetLayout({
   zoomStep,
   showBadge,
   resizable,
-  emojis
+  emojis,
+  theme
 }: Props) {
   const dispatch = useDispatch();
   const { dissableInput, showChat, visible } = useSelector((state: GlobalState) => ({
@@ -147,6 +150,7 @@ function WidgetLayout({
           showTimeStamp={showTimeStamp}
           resizable={resizable}
           emojis={emojis}
+          theme={theme}
         />
       }
       {customLauncher ?
@@ -160,6 +164,7 @@ function WidgetLayout({
           closeImg={launcherCloseImg}
           openImg={launcherOpenImg}
           showBadge={showBadge}
+          backgroundColor={theme?.accentColor}
         />
       }
       {

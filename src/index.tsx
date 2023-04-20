@@ -6,6 +6,15 @@ import store from  './store';
 
 import { AnyFunction } from './utils/types';
 
+export interface Theme {
+  accentColor?: string;
+  titleTextColor?: string;
+  titleFontFamily?: string;
+  // userMessageBubbleColor?: string;
+  // chatMessageBubbleColor?: string;
+  // messageFontFamily?: string;
+}
+
 type Props = {
   sessionId?: string;
   handleQuickButtonClicked?: AnyFunction;
@@ -34,6 +43,7 @@ type Props = {
   handleSubmit?: AnyFunction;
   showBadge?: boolean;
   resizable?: boolean;
+  theme?: Theme;
 } & typeof defaultProps;
 
 function ConnectedWidget({
@@ -63,7 +73,8 @@ function ConnectedWidget({
   handleSubmit,
   showBadge,
   resizable,
-  emojis
+  emojis,
+  theme
 }: Props) {
   return (
     <Provider store={store}>
@@ -95,6 +106,7 @@ function ConnectedWidget({
         resizable={resizable}
         emojis={emojis}
         sessionId={sessionId}
+        theme={theme}
       />
     </Provider>
   );

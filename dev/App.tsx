@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 import { Widget, addResponseMessage, setQuickButtons, toggleMsgLoader, addLinkSnippet } from '../index';
 import { addUserMessage } from '..';
+import React from 'react';
 
 export default class App extends Component {
   componentDidMount() {
@@ -49,7 +50,12 @@ export default class App extends Component {
         handleQuickButtonClicked={this.handleQuickButtonClicked}
         imagePreview
         handleSubmit={this.handleSubmit}
-        emojis
+        emojis={false}
+        theme={{
+          accentColor: "#00ff00",
+          titleTextColor: "#000",
+          titleFontFamily: "Tahoma, sans-serif"
+        }}
       />
     );
   }
