@@ -45,6 +45,7 @@ export default class App extends Component {
       <Widget
         title="Bienvenido"
         subtitle="Asistente virtual"
+        titleAvatar="https://upload.wikimedia.org/wikipedia/commons/2/24/LEGO_logo.svg"
         senderPlaceHolder="Escribe aquí ..."
         handleNewUserMessage={this.handleNewUserMessage}
         handleQuickButtonClicked={this.handleQuickButtonClicked}
