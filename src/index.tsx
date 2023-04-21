@@ -5,6 +5,7 @@ import Widget from './components/Widget';
 import store from  './store';
 
 import { AnyFunction } from './utils/types';
+import useIsMobile from './utils/useIsMobile';
 
 export interface Theme {
   headerColor?: string;
@@ -88,6 +89,7 @@ function ConnectedWidget({
   emojis,
   theme
 }: Props) {
+  const isMobile = useIsMobile();
   return (
     <Provider store={store}>
       <Widget
@@ -101,7 +103,7 @@ function ConnectedWidget({
         profileClientAvatar={profileClientAvatar}
         showCloseButton={showCloseButton}
         fullScreenMode={fullScreenMode}
-        autofocus={autofocus}
+        autofocus={isMobile ? false : autofocus}
         customLauncher={launcher}
         handleTextInputChange={handleTextInputChange}
         chatId={chatId}
