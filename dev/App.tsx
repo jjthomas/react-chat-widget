@@ -68,7 +68,10 @@ export default class App extends Component {
           responseMessageColor: "#fff",
           responseMessageBubbleColor: "#0000ff",
           messageFontFamily:"Tahoma, sans-serif",
-          timestampColor: "#ff0000"
+          timestampColor: "#ff0000",
+          previewBackgroundColor: "#000",
+          previewColor: "#fff",
+          previewFontFamily: "Tahoma, sans-serif",
         }}
       />
     );

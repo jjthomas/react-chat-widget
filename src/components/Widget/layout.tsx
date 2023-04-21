@@ -164,7 +164,11 @@ function WidgetLayout({
           closeImg={launcherCloseImg}
           openImg={launcherOpenImg}
           showBadge={showBadge}
-          backgroundColor={theme?.launcherBackgroundColor}
+          theme={{
+            ...theme,
+            backgroundColor: theme?.launcherBackgroundColor
+          }}
+          
         />
       }
       {

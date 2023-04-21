@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
 
-import { LinkParams, FullscreenPreviewState } from '../types';
+import { LinkParams, FullscreenPreviewState, MessageTypes } from '../types';
 
 export const TOGGLE_CHAT = 'BEHAVIOR/TOGGLE_CHAT';
 export const TOGGLE_INPUT_DISABLED = 'BEHAVIOR/TOGGLE_INPUT_DISABLED';
@@ -8,6 +8,7 @@ export const TOGGLE_MESSAGE_LOADER = 'BEHAVIOR/TOGGLE_MSG_LOADER';
 export const SET_BADGE_COUNT = 'BEHAVIOR/SET_BADGE_COUNT';
 export const ADD_NEW_USER_MESSAGE = 'MESSAGES/ADD_NEW_USER_MESSAGE';
 export const ADD_NEW_RESPONSE_MESSAGE = 'MESSAGES/ADD_NEW_RESPONSE_MESSAGE';
+export const SHOW_PREVIEW_MESSAGE = 'MESSAGES/SHOW_PREVIEW_MESSAGE';
 export const ADD_NEW_LINK_SNIPPET = 'MESSAGES/ADD_NEW_LINK_SNIPPET';
 export const ADD_COMPONENT_MESSAGE = 'MESSAGES/ADD_COMPONENT_MESSAGE';
 export const DROP_MESSAGES = 'MESSAGES/DROP_MESSAGES';
@@ -36,6 +37,11 @@ export interface AddResponseMessage {
   type: typeof ADD_NEW_RESPONSE_MESSAGE;
   text: string;
   id?: string;
+}
+
+export interface ShowPreviewMessage {
+  type: typeof SHOW_PREVIEW_MESSAGE;
+  message?: MessageTypes;
 }
 
 export interface ToggleMsgLoader {

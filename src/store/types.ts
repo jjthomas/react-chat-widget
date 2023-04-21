@@ -46,6 +46,7 @@ export interface BehaviorState {
 export interface MessagesState {
   messages: (MessageTypes | Link | CustomCompMessage)[];
   badgeCount: number;
+  previewMessage?: MessageTypes;
 }
 
 export interface QuickButtonsState {

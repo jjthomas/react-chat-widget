@@ -2,6 +2,14 @@
 @import 'variables/colors';
 @import 'animation';
 
+.rcw-launcher-container {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-color: transparent;
+}
+
 .rcw-launcher {
   @include animation(0, 0.5s, slide-in);
   align-self: flex-end;
@@ -12,7 +20,7 @@
   height: 60px;
   margin-top: 10px;
   cursor: pointer;
-  width: 60px;
+  min-width: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +40,7 @@
 }
 
 @media screen and (max-width: 800px){
-  .rcw-launcher {
+  .rcw-launcher-container {
     @include launcher-fs;
   }
 

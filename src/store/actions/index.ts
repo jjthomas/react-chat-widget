@@ -1,7 +1,7 @@
 import { ElementType } from 'react';
 
 import * as actionsTypes from './types';
-import { LinkParams, ImageState } from '../types';
+import { LinkParams, ImageState, MessageTypes } from '../types';
 
 export function toggleChat(): actionsTypes.ToggleChat {
   return {
@@ -28,6 +28,13 @@ export function addResponseMessage(text: string, id?: string): actionsTypes.AddR
     type: actionsTypes.ADD_NEW_RESPONSE_MESSAGE,
     text,
     id
+  };
+}
+
+export function showPreviewMessage(message?: MessageTypes): actionsTypes.ShowPreviewMessage {
+  return {
+    type: actionsTypes.SHOW_PREVIEW_MESSAGE,
+    message
   };
 }
 

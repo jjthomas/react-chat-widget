@@ -13,7 +13,8 @@ import {
   HIDE_AVATAR,
   DELETE_MESSAGES,
   MARK_ALL_READ,
-  SET_BADGE_COUNT
+  SET_BADGE_COUNT,
+  SHOW_PREVIEW_MESSAGE
 } from '../actions/types';
 
 const initialState = {
@@ -32,10 +33,20 @@ const messagesReducer = {
       return { ...state, messages: [...state.messages] };
     }
 
+    const message = createNewMessage(text, MESSAGE_SENDER.RESPONSE, id);
+    const shouldPreviewMessage = id === 'initial';
     return { 
       ...state, 
-      messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.RESPONSE, id)], 
-      badgeCount: state.badgeCount + 1 
+      messages: [...state.messages, message], 
+      badgeCount: state.badgeCount + 1,
+      previewMessage: shouldPreviewMessage ? message : state.previewMessage
+    }
+  },
+
+  [SHOW_PREVIEW_MESSAGE]: (state: MessagesState, { message }) => {
+    return {
+      ...state,
+      previewMessage: message
     }
   },
     
